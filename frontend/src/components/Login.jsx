@@ -4,9 +4,8 @@ import { Button } from "./ui/button";
 import axios from "axios";
 import { toast } from "sonner";
 
-const Signup = () => {
+const Login = () => {
   const [input, setInput] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -22,7 +21,7 @@ const Signup = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:8000/api/v1/user/register",
+        "http://localhost:8000/api/v1/user/login",
         input,
         {
           headers: {
@@ -34,7 +33,6 @@ const Signup = () => {
       if (res.data.success) {
         toast.success(res.data.message);
         setInput({
-          username: "",
           email: "",
           password: "",
         });
@@ -58,19 +56,10 @@ const Signup = () => {
             Instaclone
           </h1>
           <p className="text-center text-sm">
-            Signup to see photos & videos from your friends
+            Login to see photos & videos from your friends
           </p>
         </div>
-        <div>
-          <span className="font-medium">Username</span>
-          <Input
-            type="text"
-            name="username"
-            value={input.username}
-            onChange={changeEventHandler}
-            className="focus-visible:ring-transparent my-2"
-          />
-        </div>
+
         <div>
           <span className="font-medium">Email</span>
           <Input
@@ -91,10 +80,10 @@ const Signup = () => {
             className="focus-visible:ring-transparent my-2"
           />
         </div>
-        <Button type="submit">Signup</Button>
+        <Button type="submit">Login</Button>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
